@@ -343,7 +343,7 @@ $ npm install rosu-pp-js
 or
 
 ```sh
-$ npm install https://github.com/MaxOhn/rosu-pp-js/releases/download/v4.0.1/rosu_pp_js_nodejs.tar.gz
+$ npm install https://github.com/ppy-sb/rosu-pp-js/releases/download/v4.0.1/rosu_pp_js_nodejs.tar.gz
 ```
 
 Note that apart from the `*_nodejs` version, the release page also includes `*_web` and `*_bundler` versions.
@@ -355,5 +355,5 @@ Note that apart from the `*_nodejs` version, the release page also includes `*_w
 
 [osu!]: https://osu.ppy.sh/home
 [Rust]: https://www.rust-lang.org/
-[rosu-pp]: https://github.com/MaxOhn/rosu-pp
+[rosu-pp]: https://github.com/ppy-sb/rosu-pp
 [Wasm]: https://webassembly.org/

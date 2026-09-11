@@ -208,6 +208,16 @@ pub struct JsDifficultyAttributes {
     /// Only available for osu!taiko.
     #[wasm_bindgen(js_name = "consistencyFactor", readonly)]
     pub consistency_factor: Option<f64>,
+    /// The variety of the note patterns.
+    ///
+    /// Only available for osu!mania.
+    #[wasm_bindgen(readonly)]
+    pub variety: Option<f64>,
+    /// The accuracy scalar.
+    ///
+    /// Only available for osu!mania.
+    #[wasm_bindgen(js_name = "accScalar", readonly)]
+    pub acc_scalar: Option<f64>,
     /// Return the maximum combo.
     #[wasm_bindgen(js_name = "maxCombo", readonly)]
     pub max_combo: u32,
@@ -345,6 +355,8 @@ impl From<ManiaDifficultyAttributes> for JsDifficultyAttributes {
             n_hold_notes,
             max_combo,
             is_convert,
+            variety,
+            acc_scalar,
         } = attrs;
 
         Self {
@@ -354,6 +366,8 @@ impl From<ManiaDifficultyAttributes> for JsDifficultyAttributes {
             n_objects: Some(n_objects),
             n_hold_notes: Some(n_hold_notes),
             max_combo,
+            variety: Some(variety),
+            acc_scalar: Some(acc_scalar),
             ..Self::default()
         }
     }
@@ -413,6 +427,8 @@ impl TryFrom<JsDifficultyAttributes> for DifficultyAttributes {
             mono_stamina_factor,
             mechanical_difficulty,
             consistency_factor,
+            variety,
+            acc_scalar,
             max_combo,
         } = attrs;
 
@@ -546,13 +562,17 @@ impl TryFrom<JsDifficultyAttributes> for DifficultyAttributes {
                 }
             }
             JsGameMode::Mania => {
-                if let (Some(n_objects), Some(n_hold_notes)) = (n_objects, n_hold_notes) {
+                if let (Some(n_objects), Some(n_hold_notes), Some(variety), Some(acc_scalar)) =
+                    (n_objects, n_hold_notes, variety, acc_scalar)
+                {
                     return Ok(Self::Mania(ManiaDifficultyAttributes {
                         stars,
                         n_objects,
                         n_hold_notes,
                         max_combo,
                         is_convert,
+                        variety,
+                        acc_scalar,
                     }));
                 }
             }

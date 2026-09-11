@@ -15,8 +15,7 @@ crate-type = ["cdylib", "rlib"]
 [dependencies]
 js-sys = "0.3.69"
 rosu-mods = { version = "0.4.1", default-features = false, features = ["serde"] }
-rosu-pp = { version = "4.0.1" }
-# rosu-pp = { git = "https://github.com/MaxOhn/rosu-pp", branch = "pp-update" }
+rosu-pp = { git = "https://github.com/ppy-sb/rosu-pp", rev = "bc9ac3e760809201d9a29f34d0fa8b34b2bee747" }
 serde = { version = "1.0.197", features = ["derive"] }
 wasm-bindgen = "0.2.95"
 

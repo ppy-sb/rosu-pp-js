@@ -77,6 +77,21 @@ pub struct JsPerformanceAttributes {
     /// Only available for osu!taiko and osu!mania.
     #[wasm_bindgen(js_name = "ppDifficulty", readonly)]
     pub pp_difficulty: Option<f64>,
+    /// The variety multiplier of the final pp.
+    ///
+    /// Only available for osu!mania.
+    #[wasm_bindgen(js_name = "varietyMultiplier", readonly)]
+    pub variety_multiplier: Option<f64>,
+    /// The accuracy multiplier of the final pp.
+    ///
+    /// Only available for osu!mania.
+    #[wasm_bindgen(js_name = "accMultiplier", readonly)]
+    pub acc_multiplier: Option<f64>,
+    /// The length multiplier of the final pp.
+    ///
+    /// Only available for osu!mania.
+    #[wasm_bindgen(js_name = "lengthMultiplier", readonly)]
+    pub length_multiplier: Option<f64>,
 }
 
 impl JsPerformanceAttributes {
@@ -183,10 +198,16 @@ impl From<PerformanceAttributes> for JsPerformanceAttributes {
                 difficulty,
                 pp,
                 pp_difficulty,
+                variety_multiplier,
+                acc_multiplier,
+                length_multiplier,
             }) => Self {
                 difficulty: difficulty.into(),
                 pp,
                 pp_difficulty: Some(pp_difficulty),
+                variety_multiplier: Some(variety_multiplier),
+                acc_multiplier: Some(acc_multiplier),
+                length_multiplier: Some(length_multiplier),
                 ..Self::default()
             },
         }
